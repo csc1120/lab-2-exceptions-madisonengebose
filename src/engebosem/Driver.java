@@ -96,40 +96,44 @@ public class Driver {
     }
 
     private static void report(int numDice, int[] rolls, int max) {
+//        int scale = max / 10;
+//        int MaxDigits = (int) Math.log10(max) + 1;
+//        int largestValue = rolls.length + numDice;
+//        int maxDigits = (int) Math.log10(largestValue) + 1;
+//        int colWidth = maxDigits + 2;
+//        for (int i = 0; i < rolls.length; i++) {
+//            int count = rolls[i];
+//            int numStars = count / scale;
+//
+//            StringBuilder stars = new StringBuilder();
+//            for (int j = 0; j < numStars; j++) {
+//                stars.append("*" );
+//            }
+//
+//            System.out.printf("%d: %4d%s%n", i + numDice, rolls[i], stars);
         int scale = max / 10;
-        int MaxDigits = (int) Math.log10(max) + 1;
-        int largestValue = rolls.length + numDice;
-        int maxDigits = (int) Math.log10(largestValue);
+        int maxDigits = (int) Math.log10(max) + 1; // Width for the roll counts
+        int colWidth = maxDigits-1; // Width for the column label including ": "
+
+        StringBuilder output = new StringBuilder();
+
         for (int i = 0; i < rolls.length; i++) {
-            String spaces = "    ";
-            String startSpace = "";
-            int spaceCount = 1;
-            if (rolls[i] > 0) {
-                spaceCount = (int) Math.log10(rolls[i]) + 1;
-            }
-            int numStars = rolls[i] / scale;
+            int count = rolls[i];
+            int numStars = count / scale;
 
-            while (spaceCount < MaxDigits) {
-                spaces += " ";
-                spaceCount++;
-            }
-            spaceCount = 1;
-            if (rolls[i] > 0) {
-                spaceCount = (int) Math.log10(rolls[i]) + 1;
-            }
-            while (spaceCount < maxDigits) {
-                startSpace += " ";
-                spaceCount++;
-            }
+            // Generate the stars with an even amount of spaces before them
+            String stars = " ".repeat(4) + "*".repeat(numStars);
 
-            StringBuilder stars = new StringBuilder();
-            for (int j = 0; j < numStars; j++) {
-                stars.append("*" );
-            }
+            // Build the formatted string for the current line
+            String line = String.format("%-" + colWidth + "d:%- 4d%s%n", i + numDice, count, stars);
 
-            System.out.printf("%d%s: %d%s%s%n", i + numDice,startSpace, rolls[i], spaces, stars.toString());
+            // Append the line to the StringBuilder
+            output.append(line);
+        }
+
+        // Print the entire output
+        System.out.print(output.toString());
 
 
         }
     }
-}

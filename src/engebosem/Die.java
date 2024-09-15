@@ -8,16 +8,27 @@
 package engebosem;
 
 import java.util.Random;
-import java.util.random.RandomGenerator;
 
-public class Die{
-   private static int currentValue;
-   private static int numSides;
-   private static final Random random = new Random();
-   public static final int MINSIDES = 2;
-   public static final int MAXSIDES = 100;
+/**
+ * This class creates the Die object, and has a method that will
+ * return what value on the die is face up, and a method
+ * that will roll the die and randomly generate a number.
+ */
+public class Die {
+    //The minimum amount of sides a die could have
+    public static final int MINSIDES = 2;
+    //The maximum amount of sides the die could have
+    public static final int MAXSIDES = 100;
+    private static int currentValue;
+    private static int numSides;
+    private static final Random RANDOM = new Random();
 
-
+    /**
+     * This class creates and initializes the values for the Die object
+     * @param numSides The number of sides the dice has
+     * @throws IllegalArgumentException throws an exception if the number of sides the
+     * user chose is not within the specified bounds
+     */
    public Die(int numSides) throws IllegalArgumentException{
     if(numSides<MINSIDES || numSides > MAXSIDES){
        throw new IllegalArgumentException();
@@ -26,16 +37,16 @@ public class Die{
    }
 
    public static int getCurrentValue() throws DieNotRolledException{
-       if(currentValue < MINSIDES || currentValue > MAXSIDES){
+       if (currentValue <= 0 || currentValue > numSides) {
            throw new DieNotRolledException();
        }
-       int current = currentValue;
-       currentValue = 0;
-       return current;
+       int value = currentValue;
+       currentValue = 0; // Reset currentValue to 0 after getting it
+       return value;
 
    }
 
    public static void roll(){
-      currentValue = random.nextInt(numSides - MINSIDES + 1) + MINSIDES;
+      currentValue = RANDOM.nextInt(numSides) + 1;
    }
 }
