@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="lab-2-exceptions-madisonengebose:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/lab_2_exceptions_madisonengebose_jar</output-path>
+    <root id="archive" name="lab-2-exceptions-madisonengebose.jar">
+      <element id="module-output" name="lab-2-exceptions-madisonengebose" />
+    </root>
+  </artifact>
+</component>

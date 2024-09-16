@@ -10,6 +10,7 @@ package engebosem;
 /**
  * This is the exception class for when the user tries to get the values
  * of a specific dice that has yet to be rolled.
+ * This is a child of the Runtime Exception class
  */
 public class DieNotRolledException extends RuntimeException {
     /**
@@ -17,6 +18,6 @@ public class DieNotRolledException extends RuntimeException {
      * @return A String telling the user what is wrong.
      */
     public String getMessage(){
-        return "Dice needs to be rolled first.";
+        return "Die needs to be rolled first.";
     }
 }
